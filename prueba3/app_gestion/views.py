@@ -35,7 +35,7 @@ def ingresoPersona(request):
     if len(rut)>0 and len(nombre)>0 and len(appaterno)>0 and len(apmaterno)>0 and len(edad)>0 and len(vacuna)>0 and len(fecha)>0:
         per=Persona(rut=rut,nombre=nombre,appaterno=appaterno,apmaterno=apmaterno,edad=edad,vacuna=vacuna,fecha=fecha)  
         per.save()
-        mensaje="<h1>Persona ingresada...</h1>"
+        mensaje="<h1>Persona ingresada...</h1> <a href='/index/' >Volver al inicio</a>"
     else:
         mensaje="<h1>Persona no ingresada o datos faltantes...</h1>"
     return HttpResponse(mensaje)
