@@ -1,4 +1,3 @@
-from typing_extensions import runtime
 from django.shortcuts import redirect, render
 from app_gestion.models import Persona
 from django.http import HttpResponse
