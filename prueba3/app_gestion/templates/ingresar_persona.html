@@ -19,6 +19,7 @@
 <body>
 
    {% include "encabezado.html" %}
+   <script type="text/javascript" src="{% static 'app_gestion/JS/script.js' %}"></script>
 
    <div class="container">
       <div class="col-md-6 mx-auto text-center">
@@ -31,7 +32,7 @@
       <div class="row">
          <div class="col-md-4 mx-auto">
             <div class="myform form ">
-               <form action="/ingreso_persona/" method="GET" name="formulario_ingreso">
+               <form action="/ingreso_persona/" method="GET" name="formulario_ingreso" id="formulario_ingreso">
                     <div class="form-group">
                         Rut Paciente
                         <input type="text" name="txt_rut"  class="form-control my-input" id="txt_rut" placeholder="12345678-9">
