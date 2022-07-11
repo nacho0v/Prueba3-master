@@ -21,20 +21,20 @@ const $txt_med_apmaterno =document.getElementById('txt_med_apmaterno');
            //Rut
            if(rut.length===0)
            {
-              alert("El rut del paciente no puede ir en blanco")
+              alert("El rut del médico no puede ir en blanco")
               e.preventDefault();
               return false;
            }
            if(rut.length<=8||rut.length>10)
            {
-               alert("Rut del paciente debe tener entre 9 y 10 caracteres")
+               alert("Rut del médico debe tener entre 9 y 10 caracteres")
                e.preventDefault();
                return false;
            }
            var rutInvertido = rut.split('').reverse().join('')
            if(rutInvertido.substring(2,1)!="-")
            {
-               alert("Rut del paciente debe contener el guión")
+               alert("Rut del médico debe contener el guión")
                e.preventDefault();
                return false;
            }
@@ -42,13 +42,13 @@ const $txt_med_apmaterno =document.getElementById('txt_med_apmaterno');
           //Nombre
            if(nombre.length===0)
            {
-              alert("El nombre de paciente no puede ir en blanco")
+              alert("El nombre de médico no puede ir en blanco")
               e.preventDefault();
               return false;
            }
            if(nombre.length<3)
            {
-              alert("Nombre del paciente debe tener al menos 3 caracteres")
+              alert("Nombre del médico debe tener al menos 3 caracteres")
               e.preventDefault();
               return false;
            } 
@@ -56,27 +56,27 @@ const $txt_med_apmaterno =document.getElementById('txt_med_apmaterno');
            //Apellidos
            if(appaterno.length===0)
            {
-              alert("El apellido paterno del paciente no puede ir en blanco")
+              alert("El apellido paterno del médico no puede ir en blanco")
               e.preventDefault();
               return false;
            }    
            if (appaterno.length<3)
            {
-               alert("Apellido Paterno del paciente debe tener al menos 3 caracteres")
+               alert("Apellido Paterno del médico debe tener al menos 3 caracteres")
                e.preventDefault();
                return false;
            }
 
            if(apmaterno.length===0)
            {
-              alert("El apellido materno del paciente no puede ir en blanco")
+              alert("El apellido materno del médico no puede ir en blanco")
               e.preventDefault();
               return false;
            }    
 
            if (apmaterno.length<3)
            {
-               alert("Apellido materno del paciente debe tener al menos 3 caracteres")
+               alert("Apellido materno del médico debe tener al menos 3 caracteres")
                e.preventDefault();
                return false;
            }
