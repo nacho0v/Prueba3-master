@@ -58,15 +58,15 @@ def ingresoPersona(request):
     return HttpResponse(mensaje)
 
 
-def ingresoMedico(request):
+def ingreso_medico(request):
     med_rut=request.GET["txt_med_rut"]
     med_nombre=request.GET["txt_med_nombre"]
     med_appaterno=request.GET["txt_med_appaterno"]
     med_apmaterno=request.GET["txt_med_apmaterno"]
     if len(med_rut)>0 and len(med_nombre)>0 and len(med_appaterno)>0 and len(med_apmaterno)>0:
-        per=Persona(med_rut=med_rut,med_nombre=med_nombre,med_appaterno=med_appaterno,med_apmaterno=med_apmaterno)  
-        per.save()
-        mensaje="<h1>Médico ingresad...</h1> <a href='/index/' >Volver al inicio</a>"
+        med=Medico(med_rut=med_rut,med_nombre=med_nombre,med_appaterno=med_appaterno,med_apmaterno=med_apmaterno)  
+        med.save()
+        mensaje="<h1>Médico ingresado...</h1> <a href='/index/' >Volver al inicio</a>"
     else:
         mensaje="<h1>Médico no ingresado o datos faltantes...</h1>"
     return HttpResponse(mensaje)

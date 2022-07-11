@@ -16,12 +16,12 @@ urlpatterns = [
     path('listar_todo/', views.listar_todo),
     path('eliminacion_persona/',views.eliminacion_persona),
     path('ingresar_medico/', views.ingresar_medico),
-    path('ingresoMedico/', views.ingresoMedico),
+    path('ingreso_medico/', views.ingreso_medico),
     path('busqueda_medico/', views.busqueda_medico),
     path('eliminar_medico/', views.eliminar_medico),
     path('listar_medico/', views.listar_medico),
     path('listar_todo_medico/', views.listar_todo_medico),
     path('buscar_medico/', views.buscar_medico),
     path('eliminacion_medico/', views.eliminacion_medico),
-    path('ingresoMedico/', views.ingresoMedico),
+
 ]
