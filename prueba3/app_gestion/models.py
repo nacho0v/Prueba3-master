@@ -12,3 +12,11 @@ class Persona(models.Model):
     edad = models.IntegerField()
     vacuna = models.CharField(max_length=50)
     fecha = models.CharField(max_length=20)
+
+
+class Medico(models.Model):
+    med_rut = models.CharField(primary_key=True, max_length=10)
+    med_nombre = models.CharField(max_length=15)
+    med_appaterno = models.CharField(max_length=50)
+    med_apmaterno = models.CharField(max_length=50)
+    med_fecha = models.CharField(max_length=20)

@@ -1,9 +1,14 @@
 from django.shortcuts import redirect, render
 from app_gestion.models import Persona
+from app_gestion.models import Medico
 from django.http import HttpResponse
+
 
 def ingresar_persona(request):
     return render(request, "ingresar_persona.html")
+
+def ingresar_medico(request):
+    return render(request, "ingreso_medico.html")
 
 def index(request):
     return render(request, "index.html")
@@ -11,17 +16,30 @@ def index(request):
 def busqueda_persona(request):
     return render(request, "buscar_persona.html")
 
+def busqueda_medico(request):
+    return render(request, "busqueda_medico.html")
+
 def eliminar_persona(request):
     return render(request, "eliminar_persona.html")
 
+def eliminar_medico(request):
+    return render(request, "eliminar_medico.html")
+
 def listar_todo(request):
     return render(request,"listar_todo.html")
+
+def listar_medico(request):
+    return render(request,"listar_medico.html")
 
 
 # Create your views here.
 def listar_todo_persona(request):
     datos = Persona.objects.all()  
     return render(request,"listar_todo.html",{'personas':datos})
+
+def listar_todo_medico(request):
+    datos = Medico.objects.all()  
+    return render(request,"listar_todo_medico.html",{'medicos':datos})
     
 def ingresoPersona(request):
     rut=request.GET["txt_rut"]
@@ -39,6 +57,20 @@ def ingresoPersona(request):
         mensaje="<h1>Persona no ingresada o datos faltantes...</h1>"
     return HttpResponse(mensaje)
 
+
+def ingresoMedico(request):
+    med_rut=request.GET["txt_med_rut"]
+    med_nombre=request.GET["txt_med_nombre"]
+    med_appaterno=request.GET["txt_med_appaterno"]
+    med_apmaterno=request.GET["txt_med_apmaterno"]
+    if len(med_rut)>0 and len(med_nombre)>0 and len(med_appaterno)>0 and len(med_apmaterno)>0:
+        per=Persona(med_rut=med_rut,med_nombre=med_nombre,med_appaterno=med_appaterno,med_apmaterno=med_apmaterno)  
+        per.save()
+        mensaje="<h1>Médico ingresad...</h1> <a href='/index/' >Volver al inicio</a>"
+    else:
+        mensaje="<h1>Médico no ingresado o datos faltantes...</h1>"
+    return HttpResponse(mensaje)
+
 def buscar(request):
     if request.GET["txt_rut"]:
         rut = request.GET["txt_rut"]
@@ -46,6 +78,16 @@ def buscar(request):
         return render(request,"listar.html",{"personas":personas,"query":rut})
     else:
         mensaje = "Debe ingresar el RUT de la persona a buscar"
+        return HttpResponse(mensaje)
+
+
+def buscar_medico(request):
+    if request.GET["txt_med_rut"]:
+        med_rut = request.GET["txt_med_rut"]
+        medicos = Medico.objects.filter(rut__icontains=med_rut)
+        return render(request,"listar.html",{"medicos":medicos,"query":med_rut})
+    else:
+        mensaje = "Debe ingresar el RUT del medico a buscar"
         return HttpResponse(mensaje)
 
 
@@ -59,6 +101,21 @@ def eliminacion_persona(request):
             mensaje = "Persona Eliminada..."
         else:
             mensaje = "<h1>Persona NO eliminada...</h1>"
+    else:
+        mensaje = "<h1>Debe ingresar un RUT para eliminar..."
+    return HttpResponse(mensaje)
+
+
+def eliminacion_medico(request):
+    if request.GET["txt_med_rut"]:
+        rut_recibido = request.GET["txt_med_rut"]
+        medico = Medico.objects.filter(med_rut=rut_recibido)
+        if medico:
+            med=Medico.objects.get(med_rut=rut_recibido)
+            med.delete()
+            mensaje = "Médico Eliminado..."
+        else:
+            mensaje = "<h1>Médico NO eliminado...</h1>"
     else:
         mensaje = "<h1>Debe ingresar un RUT para eliminar..."
     return HttpResponse(mensaje)

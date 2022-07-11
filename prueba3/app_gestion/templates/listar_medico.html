@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     {% load static %}
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        {% include "encabezado.html" %} <br><br><br><br><br>
+        <h3>El RUT buscado es: {{query}}</h3>
+        <table class="table table-striped">
+            <thead>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de nacimiento</th>
+            </thead>
+            <tbody>
+                {% if medicos %}
+                {% for med in medicos %}
+                <tr>
+                    <td>{{ med.med_rut  }}</td>
+                    <td>{{ med.med_nombre }}</td>
+                    <td>{{ med.med_appaterno }}</td>
+                    <td>{{ med.med_apmaterno  }}</td>
+                    <td>{{ med.med_fecha }}</td>
+                    </tr>                    {% endfor %}
+                {% else %}
+
+                {% endif %}                
+            </tbody>
+        </table>
+        <a href="/index/" class="btn mr-2 mb-2 btn-outline-success" type="button" >Volver al inicio</a>
+        </div> <br><br><br><br><br><br>
+        {% include "footer.html" %}  
+</body>
+</html>
