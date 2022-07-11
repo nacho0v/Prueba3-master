@@ -63,8 +63,9 @@ def ingreso_medico(request):
     med_nombre=request.GET["txt_med_nombre"]
     med_appaterno=request.GET["txt_med_appaterno"]
     med_apmaterno=request.GET["txt_med_apmaterno"]
-    if len(med_rut)>0 and len(med_nombre)>0 and len(med_appaterno)>0 and len(med_apmaterno)>0:
-        med=Medico(med_rut=med_rut,med_nombre=med_nombre,med_appaterno=med_appaterno,med_apmaterno=med_apmaterno)  
+    med_fecha=request.GET["txt_med_fecha"]
+    if len(med_rut)>0 and len(med_nombre)>0 and len(med_appaterno)>0 and len(med_apmaterno)>0 and len(med_fecha)>0:
+        med=Medico(med_rut=med_rut,med_nombre=med_nombre,med_appaterno=med_appaterno,med_apmaterno=med_apmaterno,med_fecha=med_fecha)  
         med.save()
         mensaje="<h1>Médico ingresado...</h1> <a href='/index/' >Volver al inicio</a>"
     else:
@@ -98,11 +99,11 @@ def eliminacion_persona(request):
         if persona:
             per=Persona.objects.get(rut=rut_recibido)
             per.delete()
-            mensaje = "Persona Eliminada..."
+            mensaje = "Persona Eliminada...  <a href='/index/' >Volver al inicio</a>"
         else:
-            mensaje = "<h1>Persona NO eliminada...</h1>"
+            mensaje = "<h1>Persona NO eliminada...  <a href='/index/' >Volver al inicio</a></h1>"
     else:
-        mensaje = "<h1>Debe ingresar un RUT para eliminar..."
+        mensaje = "<h1>Debe ingresar un RUT para eliminar...  <a href='/index/' >Volver al inicio</a>"
     return HttpResponse(mensaje)
 
 
@@ -113,9 +114,9 @@ def eliminacion_medico(request):
         if medico:
             med=Medico.objects.get(med_rut=rut_recibido)
             med.delete()
-            mensaje = "Médico Eliminado..."
+            mensaje = "Médico Eliminado...  <a href='/index/' >Volver al inicio</a>"
         else:
-            mensaje = "<h1>Médico NO eliminado...</h1>"
+            mensaje = "<h1>Médico NO eliminado...</h1>  <a href='/index/' >Volver al inicio</a>"
     else:
         mensaje = "<h1>Debe ingresar un RUT para eliminar..."
     return HttpResponse(mensaje)
