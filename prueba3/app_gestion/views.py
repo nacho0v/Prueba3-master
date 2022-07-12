@@ -85,8 +85,8 @@ def buscar(request):
 def buscar_medico(request):
     if request.GET["txt_med_rut"]:
         med_rut = request.GET["txt_med_rut"]
-        medicos = Medico.objects.filter(rut__icontains=med_rut)
-        return render(request,"listar.html",{"medicos":medicos,"query":med_rut})
+        medicos = Medico.objects.filter(med_rut__icontains=med_rut)
+        return render(request,"listar_medico.html",{"medicos":medicos,"query":med_rut})
     else:
         mensaje = "Debe ingresar el RUT del medico a buscar"
         return HttpResponse(mensaje)
